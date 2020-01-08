@@ -3,39 +3,18 @@ require 'pry'
 class String
 
   def sentence?
-    if self.split("")[-1] == "."
-      return true
-    end
-    return false
+    return self[-1] == "."
   end
 
   def question?
-    if self.split("")[-1] == "?"
-      return true
-    end
-    return false
+    return self[-1] == "?"
   end
 
   def exclamation?
-    if self.split("")[-1] == "!"
-      return true
-    end
-    return false
+    return self[-1] == "!"
   end
 
   def count_sentences
-    previous = false
-    count = 0
-    self.split("").each{ |char|
-      if char == "." || char == "?" || char == "!" 
-        if previous == false
-          count += 1
-          previous = true
-        end
-      else
-        previous = false
-      end
-    }
-    return count
+    return self.split.select{|word| word.match? /[.?!]/ }.length
   end
 end
